@@ -2,37 +2,36 @@
 
 ## users テーブル
 
-| Column          | Type   | Options                  |
-| --------------- | ------ | ------------------------ |
-| nickname        | string | null: false              |
-| email           | string | null: false, unique: true|
-| password        | string | null: false              |
-| first_name      | string | null: false              |
-| last_name       | string | null: false              |
-| first_name_kana | string | null: false              |
-| last_name_kana  | string | null: false              |
-| birthday        | string | null: false              |
+| Column                    | Type   | Options                  |
+| ------------------------- | ------ | ------------------------ |
+| nickname                  | string | null: false              |
+| email                     | string | null: false, unique: true|
+| encrypted_password        | string | null: false              |
+| first_name                | string | null: false              |
+| last_name                 | string | null: false              |
+| first_name_kana           | string | null: false              |
+| last_name_kana            | string | null: false              |
+| birthday                  | date   | null: false              |
 
 ### Association
 
 - has_many :items
 - has_many :orders
-- has_one :addresses
 
 
 ## items テーブル
 
-| Column        | Type      | Options                        |
-| ------------- | --------- | ------------------------------ |
-| item_name     | string    | null: false                    |
-| text          | string    | null: false                    |
-| category      | string    | null: false                    |
-| condition     | string    | null: false                    |
-| shipping_cost | string    | null: false                    |
-| shipping_day  | string    | null: false                    |
-| prefectures_  | integer   | null: false                    |
-| price         | integer   | null: false                    |
-| user_id       | reference | null: false, foreign_key: true |
+| Column          | Type      | Options                        |
+| --------------- | --------- | ------------------------------ |
+| item_name       | string    | null: false                    |
+| text            | string    | null: false                    |
+| category        | string    | null: false                    |
+| condition       | string    | null: false                    |
+| shipping_cost   | string    | null: false                    |
+| shipping_day    | string    | null: false                    |
+| prefectures_id  | integer   | null: false                    |
+| price           | integer   | null: false                    |
+| user            | reference | null: false, foreign_key: true |
 
 ### Association
 
@@ -42,16 +41,16 @@
 
 ## orders テーブル
 
-| Column       | Type      | Options                        |
-| ------------ | --------- | ------------------------------ |
-| user_id      | reference | null: false, foreign_key: true |
-| item_id      | reference | null: false, foreign_key: true |
+| Column    | Type      | Options                        |
+| --------- | --------- | ------------------------------ |
+| user      | reference | null: false, foreign_key: true |
+| item      | reference | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :items
-- has_one :addresses
+- has_one :address
 
 
 ## addresses テーブル
@@ -62,11 +61,10 @@
 | city            | string    | null: false                    |
 | address         | string    | null: false                    |
 | building        | string    |                                |
-| phone_number    | string    |                                |
-| prefectures_    | integer   | null: false                    |
-| user_id         | reference | null: false, foreign_key: true |
+| phone_number    | string    | null: false                    |
+| prefectures_id  | integer   | null: false                    |
+| user            | reference | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to : users
 - belongs_to : orders
