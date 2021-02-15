@@ -21,22 +21,22 @@
 
 ## items テーブル
 
-| Column          | Type      | Options                        |
-| --------------- | --------- | ------------------------------ |
-| item_name       | string    | null: false                    |
-| text            | string    | null: false                    |
-| category        | string    | null: false                    |
-| condition       | string    | null: false                    |
-| shipping_cost   | string    | null: false                    |
-| shipping_day    | string    | null: false                    |
-| prefectures_id  | integer   | null: false                    |
-| price           | integer   | null: false                    |
-| user            | reference | null: false, foreign_key: true |
+| Column             | Type      | Options                        |
+| ------------------ | --------- | ------------------------------ |
+| item_name          | string    | null: false                    |
+| text               | text      | null: false                    |
+| category_id        | integer   | null: false                    |
+| condition_id       | integer   | null: false                    |
+| shipping_cost_id   | integer   | null: false                    |
+| shipping_day_id    | integer   | null: false                    |
+| prefectures_id     | integer   | null: false                    |
+| price              | integer   | null: false                    |
+| user               | reference | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :orders
+- has_one :order
 
 
 ## orders テーブル
@@ -49,7 +49,7 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :items
+- belongs_to :item
 - has_one :address
 
 
@@ -63,8 +63,8 @@
 | building        | string    |                                |
 | phone_number    | string    | null: false                    |
 | prefectures_id  | integer   | null: false                    |
-| user            | reference | null: false, foreign_key: true |
+| order           | reference | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to : orders
+- belongs_to : order
